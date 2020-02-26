@@ -49,6 +49,7 @@ public class TTS extends Thread implements TextToSpeech.OnInitListener {
         Looper.loop();
     }
 
+
     public void speakOut(String text) {
         if (last != text) {
             last = text;
