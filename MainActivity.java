@@ -8,9 +8,6 @@ import android.os.Bundle;
 // TODO update from video https://montana.techsmithrelay.com/7Nq7
 public class MainActivity extends AppCompatActivity {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
