@@ -1,9 +1,12 @@
 package com.example.robotcontroller;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
+// Will need to add dependencies to git repo
+// TODO update from video https://montana.techsmithrelay.com/7Nq7
 public class MainActivity extends AppCompatActivity {
 
     @Override
