@@ -8,27 +8,31 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.util.Locale;
 
-public class TTS extends Thread implements TextToSpeech.OnInitListener {
-    private TextToSpeech tts;
+public class TextToSpeechThread extends Thread implements android.speech.tts.TextToSpeech.OnInitListener {
+
+    private android.speech.tts.TextToSpeech tts;
     private Context context;
-    public Handler handler;
     private String last;
 
-    TTS(Context con) {
+    public Handler handler;
+
+
+    TextToSpeechThread(Context con) {
         context = con;
-        tts = new TextToSpeech(con, this);
+        tts = new android.speech.tts.TextToSpeech(con, this);
         last = "c";
     }
 
     public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
+        if (status == android.speech.tts.TextToSpeech.SUCCESS) {
             int result = tts.setLanguage(Locale.US);
             tts.setPitch(0);
             tts.setSpeechRate((float) 1);
 
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA || result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
                 Toast.makeText(context, "Language or data not working", Toast.LENGTH_LONG).show();
             }
         }
@@ -40,9 +44,9 @@ public class TTS extends Thread implements TextToSpeech.OnInitListener {
         this.handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                String response = msg.getData().getString("TT");
-                Log.v("**SPEECH**", response);
-                speakOut(response);
+                String input = msg.obj.toString();
+                // Log.v("**SPEECH**", response);
+                speakOut(input);
             }
         };
 
@@ -52,7 +56,7 @@ public class TTS extends Thread implements TextToSpeech.OnInitListener {
     public void speakOut(String text) {
         if (last != text) {
             last = text;
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+            tts.speak(text, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
 
             while (tts.isSpeaking()) {
                 try {

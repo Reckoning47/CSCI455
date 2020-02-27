@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PORT = 9999;
-    private TCPClient client;
+    private TCPClientThread client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
         final Button connectButton = findViewById(R.id.connectButton);
         connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 String host = findViewById(R.id.hostInput).toString();
-                client = new TCPClient(host, PORT);
+                client = new TCPClientThread(host, PORT);
                 client.start();
-                //setContentView(R.layout.)
+                setContentView(R.layout.activity_post_connect);
             }
         });
     }

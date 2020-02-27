@@ -3,27 +3,25 @@ package com.example.robotcontroller;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.renderscript.ScriptGroup;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.net.Socket;
 
-public class TCPClient extends Thread {
+public class TCPClientThread extends Thread {
 
     private static class TCPHandler extends Handler {
 
-        private final WeakReference<TCPClient> tcpClient;
+        private final WeakReference<TCPClientThread> tcpClient;
 
-        public TCPHandler(TCPClient client) {
+        public TCPHandler(TCPClientThread client) {
             this.tcpClient = new WeakReference(client);
         }
 
         public void handleMessage(Message msg) {
-            TCPClient client = this.tcpClient.get();
+            TCPClientThread client = this.tcpClient.get();
             String toSend = msg.getData().getString("TCP");
             Message res = new Message();
             res.obj = client.sendMessage(toSend);
@@ -40,7 +38,7 @@ public class TCPClient extends Thread {
     public Handler handler;
 
 
-    TCPClient(String host, int port) {
+    TCPClientThread(String host, int port) {
         super();
         this.host = host;
         this.port = port;
