@@ -13,6 +13,22 @@ import java.util.Locale;
 
 public class TextToSpeechThread extends Thread implements android.speech.tts.TextToSpeech.OnInitListener {
 
+    private static class TTSHandler extends Handler {
+
+        private final WeakReference<TextToSpeechThread> ttsThread;
+
+        public TTSHandler(TextToSpeechThread ttsThread) {
+            this.ttsThread = new WeakReference(ttsThread);
+        }
+
+        public void handleMessage(Message msg) {
+            TextToSpeechThread tts = this.ttsThread.get();
+            String speech = msg.getData().getString("TTS");
+            tts.speakOut(speech);
+        }
+
+    }
+
     private android.speech.tts.TextToSpeech tts;
     private Context context;
     private String last;
@@ -26,6 +42,12 @@ public class TextToSpeechThread extends Thread implements android.speech.tts.Tex
         last = "c";
     }
 
+    public void run() {
+        Looper.prepare();
+        this.handler = new TTSHandler(this);
+        Looper.loop();
+    }
+
     public void onInit(int status) {
         if (status == android.speech.tts.TextToSpeech.SUCCESS) {
             int result = tts.setLanguage(Locale.US);
@@ -36,21 +58,6 @@ public class TextToSpeechThread extends Thread implements android.speech.tts.Tex
                 Toast.makeText(context, "Language or data not working", Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    public void run() {
-        Looper.prepare();
-
-        this.handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                String input = msg.obj.toString();
-                // Log.v("**SPEECH**", response);
-                speakOut(input);
-            }
-        };
-
-        Looper.loop();
     }
 
     public void speakOut(String text) {
