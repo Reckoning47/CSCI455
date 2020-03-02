@@ -129,6 +129,14 @@ public class PostConnectActivity extends AppCompatActivity {
                 sendHeadRight();
             }
         });
+        final Button headCenterButton = findViewById(R.id.headCenterButton);
+        headCenterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("head left Button Clicked");
+                sendHeadCenter();
+            }
+        });
     }
 
     public void sendStop() {
@@ -163,6 +171,9 @@ public class PostConnectActivity extends AppCompatActivity {
     }
     public void sendHeadRight() {
         tcpSend("headright");
+    }
+    public void sendHeadCenter() {
+        tcpSend("headcenter");
     }
     public void tcpSend(String command) {
         Message msg = tcp.handler.obtainMessage();
