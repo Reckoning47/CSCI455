@@ -5,49 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/speakButton"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="40dp"
-        android:text="Speak"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/speakInput"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="106dp"
-        android:ems="10"
-        android:hint="Enter Something to Say"
-        android:inputType="textNoSuggestions"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="350dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-240dp">
 
         <LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="83dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="1dp"
             android:orientation="horizontal">
 
@@ -73,6 +40,103 @@
                 android:text="Reverse" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/leftButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Left" />
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Reset" />
+
+            <Button
+                android:id="@+id/rightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/waistLeftButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="W Left" />
+
+            <Button
+                android:id="@+id/waistCenterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="W Center" />
+
+            <Button
+                android:id="@+id/waistRightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="W Right" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/headLeftButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="H Left" />
+
+            <Button
+                android:id="@+id/headCenterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="H Center" />
+
+            <Button
+                android:id="@+id/headRightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="H Right" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/speakButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Speak" />
+
+        <EditText
+            android:id="@+id/speakInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Something to Say"
+            android:inputType="textNoSuggestions"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
