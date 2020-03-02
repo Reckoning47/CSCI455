@@ -1,8 +1,11 @@
 package com.example.robotcontroller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String host = findViewById(R.id.hostInput).toString();
+                EditText input = findViewById(R.id.hostInput);
+                String host = input.getText().toString();
                 client = new TCPClientThread(host, PORT);
                 client.start();
-                setContentView(R.layout.activity_post_connect);
+                Intent intent = new Intent(v.getContext(), PostConnectActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -23,9 +23,8 @@ public class TCPClientThread extends Thread {
         public void handleMessage(Message msg) {
             TCPClientThread client = this.tcpClient.get();
             String toSend = msg.getData().getString("TCP");
-            Message res = new Message();
-            res.obj = client.sendMessage(toSend);
-            client.handler.sendMessage(res);
+            String res = client.sendMessage(toSend);
+            System.out.println(res);
         }
     }
 
@@ -34,6 +33,7 @@ public class TCPClientThread extends Thread {
     private BufferedReader in;
     private String host;
     private int port;
+    private static TCPClientThread instance;
 
     public Handler handler;
 
@@ -42,31 +42,29 @@ public class TCPClientThread extends Thread {
         super();
         this.host = host;
         this.port = port;
+        instance = this;
+    }
+
+    public static TCPClientThread getInstance() {
+        return instance;
     }
 
     @Override
     public void run() {
-        createConnection();
         Looper.prepare();
         this.handler = new TCPHandler(this);
         Looper.loop();
     }
 
-    public void createConnection() {
+    public String sendMessage(String msg) {
+        String response;
         try {
             this.socket = new Socket(this.host, this.port);
             this.out = new PrintWriter(socket.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String sendMessage(String msg) {
-        this.out.println(msg);
-        String response;
-        try {
+            this.out.println(msg);
             response = this.in.readLine();
+            this.socket.close();
         } catch (Exception e) {
             e.printStackTrace();
             response = null;
