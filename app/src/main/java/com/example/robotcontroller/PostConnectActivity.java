@@ -48,13 +48,14 @@ public class PostConnectActivity extends AppCompatActivity {
         });
 
         final Button resetButton = findViewById(R.id.resetButton);
-        stopButton.setOnClickListener(new View.OnClickListener() {
+        resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Stop Button Clicked");
-                sendStop();
+                System.out.println("reset Button Clicked");
+                sendReset();
             }
         });
+
         final Button forwardButton = findViewById(R.id.forwardButton);
         forwardButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +73,64 @@ public class PostConnectActivity extends AppCompatActivity {
                 sendReverse();
             }
         });
+        final Button turnLeftButton = findViewById(R.id.leftButton);
+        turnLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Send turn left Button Clicked");
+                sendTurnLeft();
+            }
+        });
+        final Button turnRightButton = findViewById(R.id.rightButton);
+        turnRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Send turn left Button Clicked");
+                sendTurnRight();
+            }
+        });
+        final Button waistLeftButton = findViewById(R.id.waistLeftButton);
+        waistLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("waist left Button Clicked");
+                sendWaistLeft();
+            }
+        });
+        final Button waistRightButton = findViewById(R.id.waistRightButton);
+        waistRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("waist right Button Clicked");
+                sendWaistRight();
+            }
+        });
+        final Button waistCenterButton = findViewById(R.id.waistCenterButton);
+        waistCenterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("waist center Button Clicked");
+                sendWaistCenter();
+            }
+        });
+        final Button headLeftButton = findViewById(R.id.headLeftButton);
+        headLeftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("head left Button Clicked");
+                sendHeadLeft();
+            }
+        });
+        final Button headRightButton = findViewById(R.id.headRightButton);
+        headRightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("head left Button Clicked");
+                sendHeadRight();
+            }
+        });
     }
+
     public void sendStop() {
         tcpSend("stop");
     }
