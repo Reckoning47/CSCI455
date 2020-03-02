@@ -38,21 +38,29 @@ public class PostConnectActivity extends AppCompatActivity {
             }
         });
 
-        final Button forwardButton = findViewById(R.id.forwardButton);
-        forwardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Forward Button Clicked");
-                sendForward();
-            }
-        });
-
         final Button stopButton = findViewById(R.id.stopButton);
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Stop Button Clicked");
                 sendStop();
+            }
+        });
+
+        final Button resetButton = findViewById(R.id.resetButton);
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Stop Button Clicked");
+                sendStop();
+            }
+        });
+        final Button forwardButton = findViewById(R.id.forwardButton);
+        forwardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Forward Button Clicked");
+                sendForward();
             }
         });
 
@@ -65,19 +73,39 @@ public class PostConnectActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void sendForward() {
-        tcpSend("forward");
-    }
-
     public void sendStop() {
         tcpSend("stop");
     }
-
+    public void sendReset() {
+        tcpSend("reverse");
+    }
+    public void sendForward() {
+        tcpSend("forward");
+    }
     public void sendReverse() {
         tcpSend("reverse");
     }
-
+    public void sendTurnLeft() {
+        tcpSend("turnleft");
+    }
+    public void sendTurnRight() {
+        tcpSend("turnright");
+    }
+    public void sendWaistLeft() {
+        tcpSend("waistleft");
+    }
+    public void sendWaistRight() {
+        tcpSend("waistright");
+    }
+    public void sendWaistCenter() {
+        tcpSend("waistcenter");
+    }
+    public void sendHeadLeft() {
+        tcpSend("headleft");
+    }
+    public void sendHeadRight() {
+        tcpSend("headright");
+    }
     public void tcpSend(String command) {
         Message msg = tcp.handler.obtainMessage();
         Bundle b = new Bundle();
